@@ -48,14 +48,14 @@ describe('Story 1: Browse events', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
     expect(await screen.findByText('No upcoming events yet.')).toBeInTheDocument();
   });
-  it('Story 1: free events and both action buttons explain demo scope without changing inventory', async () => {
+  it('Story 1: free events remain free, Buy starts checkout, and waitlist does not change inventory', async () => {
     render(<EventBrowser loadEvents={load([{ ...available, priceCents: 0, remaining: 25 }, { ...soldOut, remaining: 0 }])} />);
     expect(await screen.findByText('Free')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Buy' }));
-    expect(screen.getByRole('status')).toHaveTextContent('Purchasing is coming later');
-    expect(screen.getByText('25 seats remaining')).toBeInTheDocument();
+    expect(screen.getByRole('dialog', { name: /checkout/i })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Join waitlist' }));
     expect(screen.getByRole('status')).toHaveTextContent('Waitlist registration is coming later');
+    expect(screen.getByText('25 seats remaining')).toBeInTheDocument();
   });
   it('Story 1 SEC-20: event text is displayed without executing HTML', async () => {
     render(<EventBrowser loadEvents={load([{ ...available, title: '<script>alert(1)</script>', remaining: 25 }])} />);

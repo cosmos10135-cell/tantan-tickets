@@ -1,5 +1,5 @@
-import { listUpcomingEvents } from '../../../lib/events';
+import { getUpcomingEvents } from '../../../lib/orders';
 export const dynamic = 'force-dynamic';
 export async function GET() {
-  return Response.json(listUpcomingEvents(), { headers: { 'Cache-Control': 'no-store' } });
+  return Response.json(getUpcomingEvents(), { headers: { 'Cache-Control': 'no-store' } });
 }
