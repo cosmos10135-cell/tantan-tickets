@@ -13,4 +13,6 @@ Story 3 adds an in-memory simulated ticket purchase flow to Story 1.
 
 Automated tests in `tests/story-3.test.jsx` cover checkout quantity validation, the ten-minute hold message, the on-screen receipt and QR image, declined payment feedback, and the waitlist offer when seats are gone. `tests/story-3-orders.test.js` covers the server-side order cap, actual hold expiry, unique 128-bit QR tokens and receipt timing, release after a declined payment, and preventing overselling when the last seat is held.
 
+`tests/security-sec-8.test.js` verifies at the API boundary that forged client price and total fields do not override the server-calculated order amount.
+
 This is a class demo, not production checkout. It does not implement real payments, email delivery, persistent inventory, authentication, or waitlist enrollment.

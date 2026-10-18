@@ -31,7 +31,7 @@ This audit uses `docs/Starter Spec A - Tartan Tickets - SECURITY_SPEC.md` and as
 | SEC-5 — Deny and log unauthorized cross-club access | Not at all | Events are publicly listed, and there is no cross-club authorization or access-denial logging. |
 | SEC-6 — Hide another student's ticket with “not found” | Not at all | There are no ticket records, ownership checks or ticket endpoint implementing this response. |
 | SEC-7 — Stripe Checkout; no card data in servers or logs | Partly | The demo collects no card data and does not connect to Stripe; payments are simulated. |
-| SEC-8 — Calculate charges on the server; ignore browser amounts | Partly | The simulated order total is calculated on the server from the stored event price and seat count; there is no real charge. |
+| SEC-8 — Calculate charges on the server; ignore browser amounts | Fully for simulated totals | The server calculates the simulated order and receipt total from its stored event price and seat count; a passing API test proves browser-supplied amounts are ignored. A real payment charge is not implemented because there is no payment provider. |
 | SEC-9 — Verify Stripe webhook signatures; reject and log invalid ones | Not at all | No Stripe webhook endpoint, signature verification or rejection logging exists. |
 | SEC-10 — Process each Stripe event ID at most once | Not at all | No Stripe event processing or duplicate-event tracking exists. |
 | SEC-11 — Secrets manager; no repository keys; live keys only in production | Partly | No Stripe keys are configured in the project, but secrets-manager storage and production-only live-key controls are not implemented. |
