@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.git/
+.DS_Store
+tests/
+docs/
+coverage/
+*.log
+Starter Spec A - Tartan Tickets - *.md
